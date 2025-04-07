@@ -217,4 +217,126 @@ ORDER BY ANIMAL_ID;
 > WHERE에 not을 붙이면 해당 조건이 아닌 경우임.
 
 
+<br>
+<br>
+<br>
+
+## 상위 n개 레코드
+- 문제
+```
+동물 보호소에 가장 먼저 들어온 동물의 이름을 조회하는 SQL 문을 작성해주세요.
+```
+- SQL
+```sql
+SELECT NAME
+FROM ANIMAL_INS
+ORDER BY DATETIME
+LIMIT 1;
+```
+
+<br>
+<br>
+<br>
+
+## 조건에 맞는 회원수 구하기
+- 문제
+```
+USER_INFO 테이블에서 2021년에 가입한 회원 중 나이가 20세 이상 29세 이하인 회원이 몇 명인지 출력하는 SQL문을 작성해주세요.
+```
+- SQL
+```sql
+SELECT COUNT(1)
+FROM USER_INFO
+WHERE YEAR(JOINED)=2021
+    AND AGE BETWEEN 20 AND 29;
+```
+
+<br>
+<br>
+<br>
+
+## Python 개발자 찾기
+- 문제
+```
+DEVELOPER_INFOS 테이블에서 Python 스킬을 가진 개발자의 정보를 조회하려 합니다. Python 스킬을 가진 개발자의 ID, 이메일, 이름, 성을 조회하는 SQL 문을 작성해 주세요.
+
+결과는 ID를 기준으로 오름차순 정렬해 주세요.
+```
+- SQL
+```sql
+SELECT ID, EMAIL, FIRST_NAME, LAST_NAME
+FROM DEVELOPER_INFOS
+WHERE SKILL_1='Python'
+    OR SKILL_2='Python'
+    OR SKILL_3='Python'
+ORDER BY ID ASC;
+```
+
+<br>
+<br>
+<br>
+
+## 잔챙이 잡은 수 구하기
+- 문제
+```
+잡은 물고기 중 길이가 10cm 이하인 물고기의 수를 출력하는 SQL 문을 작성해주세요.
+물고기의 수를 나타내는 컬럼 명은 FISH_COUNT로 해주세요.
+단, 잡은 물고기의 길이가 10cm 이하일 경우에는 LENGTH 가 NULL 이며, LENGTH 에 NULL 만 있는 경우는 없습니다.
+```
+- SQL
+```sql
+SELECT COUNT(*) as FISH_COUNT
+FROM FISH_INFO
+WHERE LENGTH is NULL;
+```
+
+
+<br>
+<br>
+<br>
+
+## 가장 큰 물고기 10마리 구하기
+- 문제
+```
+FISH_INFO 테이블에서 가장 큰 물고기 10마리의 ID와 길이를 출력하는 SQL 문을 작성해주세요.
+결과는 길이를 기준으로 내림차순 정렬하고, 길이가 같다면 물고기의 ID에 대해 오름차순 정렬해주세요. 
+단, 가장 큰 물고기 10마리 중 길이가 10cm 이하인 경우는 없습니다.
+ID 컬럼명은 ID, 길이 컬럼명은 LENGTH로 해주세요.
+```
+- SQL
+```sql
+SELECT ID, LENGTH
+FROM FISH_INFO
+ORDER BY LENGTH DESC, ID
+LIMIT 10;
+```
+
+## 특정 형질을 가지는 대장균 찾기
+- 문제
+```
+2번 형질이 보유하지 않으면서 1번이나 3번 형질을 보유하고 있는 대장균 개체의 수(COUNT)를 출력하는 SQL 문을 작성해주세요. 1번과 3번 형질을 모두 보유하고 있는 경우도 1번이나 3번 형질을 보유하고 있는 경우에 포함합니다.
+
+ex ) 2번 형질 보유 -> 0010
+```
+- SQl
+```
+SELECT COUNT(*) as COUNT
+FROM ECOLI_DATA
+WHERE GENOTYPE & 2 = 0
+    AND GENOTYPE & 5 > 0;
+```
+
+### SQL에서 비트와이즈 연산
+- AND (&)
+- OR (|)
+- XOR (^)
+- NOT (~)
+
+> 10진수 형태로 표현해야함.
+
+
+
+
+
+
 
